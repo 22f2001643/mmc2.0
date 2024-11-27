@@ -208,7 +208,7 @@
                 <td>{{ appointment.specialty }}</td>
                 <td>{{ appointment.action }}</td>
                 <td>
-                    <form action="{{ url_for('delete_appointment', appointment_id=appointment.id) }}" method="POST">
+                    <form action="{{ url_for('cancel_appointment', appointment_id=appointment.id) }}" method="POST">
                         <button class="delete-btn" type="submit">Delete</button>
                     </form>
                 </td>

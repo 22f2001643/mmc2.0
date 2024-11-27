@@ -340,9 +340,9 @@ def get_available_times():
     return jsonify(available_times)
 
 # Route to cancel an appointment
-@app.route('/cancel_appointment/<int:booking_id>', methods=['POST'])
-def cancel_appointment(booking_id):
-    booking = Booking_appointment.query.get_or_404(booking_id)
+@app.route('/cancel_appointment/<int:appointment_id>', methods=['POST'])
+def cancel_appointment(appointment_id):
+    booking = Booking_appointment.query.get_or_404(appointment_id)
     db.session.delete(booking)
     db.session.commit()
     flash("Appointment canceled successfully.", "success")
