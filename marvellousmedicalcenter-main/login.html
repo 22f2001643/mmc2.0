@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Details</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+            font-size: 28px;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 30px;
+            background-color: #2a3d66;
+            color: white;
+        }
+
+        .header h2 {
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header a:hover {
+            background-color: #3e5c88;
+        }
+
+        /* Logout Button Styling */
+        .logout-btn {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Form and Table Styling */
+        form {
+            max-width: 95%;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        thead th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody td {
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Select and Input Styling */
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+
+            select, input[type="text"] {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+
+            .logout-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Admin - Manage All Appointments</h2>
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+
+    <!-- Display User Info (First Name, Last Name, Phone, Email, Address) -->
+    <div class="user-details">
+        {% if appointments %}
+            <h3>User Details</h3>
+            <p><strong>First Name:</strong> {{ appointments[0].first_name }}</p>
+            <p><strong>Last Name:</strong> {{ appointments[0].last_name }}</p>
+            <p><strong>Phone:</strong> {{ appointments[0].phone }}</p>
+            <p><strong>Email:</strong> {{ appointments[0].email }}</p>
+            <p><strong>Address:</strong> {{ appointments[0].address }}</p>
+        {% else %}
+            <p>No appointments found.</p>
+        {% endif %}
+    </div>
+
+    <h1>Appointment Details</h1>
+
+    <!-- Appointment Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Booking Type</th>
+                <th>Appointment Date</th>
+                <th>Appointment Time</th>
+                <th>Specialty</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.booking_type }}</td>
+                <td>{{ appointment.appointment_date }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+                <td>{{ appointment.specialty }}</td>
+                <td>{{ appointment.action }}</td>
+                <td>
+                    <form action="{{ url_for('delete_appointment', appointment_id=appointment.id) }}" method="POST">
+                        <button class="delete-btn" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

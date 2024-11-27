@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - All Appointments</title>
+    <style>
+        /* General Page Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        form {
+            max-width: 90%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+
+        thead th {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        tbody tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        tbody td {
+            padding: 12px 15px;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        select, input[type="text"] {
+            width: 90%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Logout Button Styling */
+        .logout-btn {
+            background-color: #f44336;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+            margin-bottom: 20px;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Header Styling */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #333;
+            color: white;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        .header a:hover {
+            background-color: #575757;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+
+            select, input[type="text"] {
+                font-size: 12px;
+                padding: 6px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+
+            .logout-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>Admin - Manage All Appointments</h2>
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button class="logout-btn" type="submit">Logout</button>
+        </form>
+    </div>
+    <h1>Admin - Manage All Appointments</h1>
+    <form method="POST" action="{{ url_for('admin') }}">
+        <table>
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Booking Type</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Specialty</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.first_name }}</td>
+                    <td>{{ appointment.last_name }}</td>
+                    <td>{{ appointment.phone }}</td>
+                    <td>{{ appointment.address }}</td>
+                    <td>{{ appointment.email }}</td>
+                    <td>
+                        <input type="text" name="booking_type_{{ appointment.id }}" value="{{appointment.booking_type}}">
+                            
+                    </td>
+                    <td>
+                        <input type="text" name="appointment_date_{{ appointment.id }}" value="{{ appointment.appointment_date }}">
+                    </td>
+                    <td>
+                        <input type="text" name="appointment_time_{{ appointment.id }}" value="{{ appointment.appointment_time }}">
+                    </td>
+                    <td>
+                        <input type="text" name="specialty_{{ appointment.id }}" value="{{ appointment.specialty }}">
+                    </td>
+                    <td>
+                        <select name="action_{{ appointment.id }}">
+                            <option value="pending" {% if appointment.action == "pending" %}selected{% endif %}>Pending</option>
+                            <option value="confirmed" {% if appointment.action == "confirmed" %}selected{% endif %}>Confirmed</option>
+                            <option value="canceled" {% if appointment.action == "canceled" %}selected{% endif %}>Canceled</option>
+                        </select>
+                    </td>
+                </tr>
+                <input type="hidden" name="appointment_id" value="{{ appointment.id }}">
+                {% endfor %}
+            </tbody>
+        </table>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

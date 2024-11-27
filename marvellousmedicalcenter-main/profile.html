@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profiles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 1200px; /* Wider container */
+        }
+
+        .profile-card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px; /* Increased padding */
+            margin-bottom: 30px; /* Increased margin */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            font-size: 1.1rem; /* Larger font size */
+        }
+
+        .profile-picture {
+            width: 120px; /* Larger profile picture */
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px; /* Adjusted margin */
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-header h3 {
+            font-size: 1.75rem; /* Increased heading size */
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            font-size: 1.2rem; /* Increased subtitle size */
+        }
+
+        .profile-content h5 {
+            margin-bottom: 10px;
+            font-size: 1.25rem; /* Increased section title size */
+        }
+
+        .expertise-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .expertise-list li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Doctor Profiles</h1>
+
+        <!-- Dr. Abdul Hameed's Profile -->
+        <div id="profile-dr-hameed" class="profile-card">
+            <div class="profile-header">
+                <img src="static/Dr Hameed N.jpg" alt="Dr. Abdul Hameed" class="profile-picture">
+                <div>
+                    <h3>Dr. Abdul Hameed</h3>
+                    <p class="text-muted">MBBS, General Practitioner</p>
+                </div>
+            </div>
+            <div class="profile-content">
+                <p>With over 7 years of dedicated experience as a general practitioner in India, Dr. Hameed embodies a profound commitment to healthcare.</p>
+                <h5>Expertise:</h5>
+                <ul class="expertise-list">
+                    <li>Diabetes</li>
+                    <li>Hypertension</li>
+                    <li>Dyslipidemia</li>
+                    <li>Thyroid disorder</li>
+                    <li>Cardiac disease</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dr. Sabeen Shafique's Profile -->
+        <div id="profile-dr-sabeen" class="profile-card">
+            <div class="profile-header">
+                <img src="static/Dr sabeen photo.jpg" alt="Dr. Sabeen Shafique" class="profile-picture">
+                <div>
+                    <h3>Dr. Sabeen Shafique</h3>
+                    <p class="text-muted">General Practitioner</p>
+                </div>
+            </div>
+            <div class="profile-content">
+                <p>Dr. Sabeen Shafique is a highly experienced General Practitioner with extensive years of dedicated service in the healthcare field.</p>
+                <h5>Key Attributes:</h5>
+                <p>Fluent in English and Urdu, emphasizes patient-centered care, and specializes in family health management.</p>
+            </div>
+        </div>
+
+        <!-- Dr. Roshini V. Nair's Profile -->
+        <div id="profile-dr-roshini" class="profile-card">
+            <div class="profile-header">
+                <img src="static/roshini.jpeg" alt="Dr. Roshini V. Nair" class="profile-picture">
+                <div>
+                    <h3>Dr. Roshini V. Nair</h3>
+                    <p class="text-muted">MDS, Prosthodontist</p>
+                </div>
+            </div>
+            <div class="profile-content">
+                <p>Dr. Roshini is a highly skilled Prosthodontist with over a decade of professional experience in the dental field.</p>
+                <h5>Expertise:</h5>
+                <ul class="expertise-list">
+                    <li>Dental crowns and bridges</li>
+                    <li>Smile designing</li>
+                    <li>Root canal treatments</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Dr. Anu Joseph's Profile -->
+        <div id="profile-dr-anu" class="profile-card">
+            <div class="profile-header">
+                <img src="static/ANU.jpeg" alt="Dr. Anu Joseph" class="profile-picture">
+                <div>
+                    <h3>Dr. Anu Joseph</h3>
+                    <p class="text-muted">MDS, Orthodontist</p>
+                </div>
+            </div>
+            <div class="profile-content">
+                <p>Dr. Anu Joseph is an accomplished orthodontist committed to helping patients achieve their ideal smiles through personalized care.</p>
+                <h5>Expertise:</h5>
+                <ul class="expertise-list">
+                    <li>Functional appliance therapy</li>
+                    <li>Clear aligners</li>
+                    <li>Restorative dentistry</li>
+                    <li>Teeth whitening</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
