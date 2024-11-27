@@ -439,32 +439,6 @@ def delete_appointment(appointment_id):
     return redirect(url_for('admin_appointments'))  # Redirect back to the appointments list
 
 
-@app.route('/export_users', methods=['GET'])
-def export_csv():
-    # Fetch all user data from the User model
-    users = User.query.all()
-    
-    # Create a CSV in memory using StringIO
-    output = StringIO()
-    
-    # Write CSV header
-    output.write('First Name,Last Name,Address,Phone,Email\n')
-    
-    # Write CSV rows
-    for user in users:
-        # Escape commas and any special characters properly for CSV format
-        row = f'"{user.first_name}","{user.last_name}","{user.address}","{user.phone}","{user.email}"\n'
-        output.write(row)
-    
-    output.seek(0)  # Reset the stream position to the beginning
-    
-    # Convert StringIO to BytesIO for Flask's send_file
-    mem = BytesIO()
-    mem.write(output.getvalue().encode('utf-8'))
-    mem.seek(0)
-
-    # Return the CSV as a file attachment with the correct MIME type
-    return send_file(mem, mimetype='text/csv', download_name='users.csv', as_attachment=True)
 
 @app.route('/export_appointments_csv', methods=['GET'])
 def export_appointments_csv():

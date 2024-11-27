@@ -151,6 +151,10 @@
         <form method="POST" action="{{ url_for('logout') }}">
             <button class="logout-btn" type="submit">Logout</button>
         </form>
+        <form method="GET" action="{{ url_for('export_appointments_csv') }}">
+            <button class="logout-btn" type="submit">Export as CSV</button>
+        </form>
+    </div>
     </div>
     <h1>Admin - Manage All Appointments</h1>
     <form method="POST" action="{{ url_for('admin') }}">
