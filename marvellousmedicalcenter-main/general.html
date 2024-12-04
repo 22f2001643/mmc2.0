@@ -16,7 +16,7 @@
         --primary-color: #007bff;
         --primary-color-dark: #0056b3;
         --primary-color-light: #e9f7ff;
-        --secondary-color: #ff5722;
+        --secondary-color: #cf1a1a;
         --text-dark: #212529;
         --text-light: #6c757d;
         --white: #ffffff;
@@ -111,7 +111,7 @@
     .nav__logo {
     font-size: 50px;
     font-weight: 600;
-    color: orangered; /* Inner text color */
+    color: red; /* Inner text color */
     text-shadow: 
       -1px -1px 0 #000,   /* Top left shadow */
       1px -1px 0 #000,    /* Top right shadow */
@@ -339,7 +339,7 @@
     .doctor-card:hover {
         transform: translateY(-5px); /* Lift the card up slightly */
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Increase shadow for depth */
-        background-color:#7FFFD4;
+        background-color:#ff7f9b88;
     }
     .social-icons {
         margin: 10px 0;
@@ -358,7 +358,7 @@
         margin-top: 15px;
     }
     .appointment-buttons button {
-        background-color: #007bff; /* Button color */
+        background-color: #a50000; /* Button color */
         color: white;
         border: none;
         border-radius: 5px;
@@ -368,7 +368,7 @@
         font-size: 14px;
     }
     .appointment-buttons button:hover {
-        background-color: #0056b3; /* Darker shade on hover */
+        background-color: #048f27; /* Darker shade on hover */
     }
     .footer {
         background-color: var(--primary-color-light);
@@ -631,7 +631,7 @@
             <p>M.B.B.S. GENERAL PRACTITIONER</p>
             <div class="availability">Available: 9 AM - 10 PM</div>
             <div class="appointment-buttons">
-                <button onclick="window.location.href='/#book-check-btn'">Book General Appointment</button>
+                <button onclick="window.location.href='/dental_page'">Book General Appointment</button>
             </div>
         </div>
         <!-- Repeat the above block for additional doctors -->
@@ -641,7 +641,7 @@
             <p>M.B.B.S. GENERAL PRACTITIONER</p>
             <div class="availability">Available: 9 AM - 10 PM</div>
             <div class="appointment-buttons">
-                <button onclick="window.location.href='/#book-check-btn'">Book General Appointment</button>
+                <button onclick="window.location.href='/dental_page'">Book General Appointment</button>
             </div>
         </div>
         
@@ -666,46 +666,54 @@
         <h4>About Us</h4>
         <p><a href="/#home">Home</a></p>
         <p><a href="/#about">About Us</a></p>
-        <p><a href='/contact#terms'>Terms & Conditions</a></p>
+        <p><a href="/contact#terms">Terms & Conditions</a></p>
       </div>
       <div class="footer__col">
         <h4>Services</h4>
         <p><a href="/#home">Home</a></p>
         <p><a href="/dental">Dental</a></p>
-        <p><a href='/'>Index</a></p>
+        <p><a href="/orthodontics">Orthodontics</a></p>
+        <p><a href="/general">General</a></p>
       </div>
       <div class="footer__col">
         <h4>Contact Us</h4>
         <p>
-          <i class="ri-map-pin-2-fill"></i> FLAT No: 103, SOUQ AL ROLLA BUILDING, 
-          OPPOSITE K M TRADING
-          CENTRE, ROLLA, SHARJAH, P.O. BOX No: 65511
-          
+          <i class="ri-map-pin-2-fill"></i> 
+          <a 
+            href="https://www.google.com/maps?q=FLAT+No:+103,+SOUQ+AL+ROLLA+BUILDING,+OPPOSITE+K+M+TRADING+CENTRE,+ROLLA,+SHARJAH,+P.O.+BOX+No:+65511" 
+            target="_blank"
+            rel="noopener noreferrer">
+            FLAT No: 103, SOUQ AL ROLLA BUILDING, 
+            OPPOSITE K M TRADING CENTRE, ROLLA, SHARJAH, P.O. BOX No: 65511
+          </a>
         </p>
         <p>
-            <i class="ri-mail-fill"></i>
-            <a href="mailto:info@marvellousmedical.ae" target="_blank">info@marvellousmedical.ae</a>
+          <i class="ri-mail-fill"></i>
+          <a href="mailto:info@marvellousmedical.ae" target="_blank">info@marvellousmedical.ae</a>
         </p>
         <p>
-            <i class="ri-google-line"></i>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@marvellousmedical.ae" target="_blank" rel="noopener noreferrer">info@marvellousmedical.ae</a>
+          <i class="ri-phone-fill"></i> 
+          <a href="tel:+971505662765">+971 50 566 2765</a>
         </p>
-        <p><i class="ri-phone-fill"></i> +971 50 566 2765</p>
-        <p><i class="ri-landline-fill"></i> 065614266</p>
+        <p>
+          <i class="ri-landline-fill"></i> 
+          <a href="tel:+97165614266">065614266</a>
+        </p>
+        <p>
+          <i class="ri-whatsapp-fill"></i> 
+          <a href="https://wa.me/971505662765" target="_blank" rel="noopener noreferrer">
+            WhatsApp Us
+          </a>
+        </p>
       </div>
     </div>
     <div class="footer__bar">
       <div class="footer__bar__content">
         <p>Copyright © 2024 Marvellous Medical Center TR. All rights reserved.</p>
-        <div class="footer__socials">
-          <span><i class="ri-instagram-line"></i></span>
-          <span><i class="ri-facebook-fill"></i></span>
-          <span><i class="ri-heart-fill"></i></span>
-          <span><i class="ri-twitter-fill"></i></span>
-        </div>
       </div>
     </div>
   </footer>
+  
 </body>
 <script>
     function toggleMenu() {

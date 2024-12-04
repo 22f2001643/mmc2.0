@@ -7,25 +7,32 @@
     <title>Doctor Profiles</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: rgb(112, 16, 16);
+            color: black;
+        }
+
         .container {
-            max-width: 1200px; /* Wider container */
+            max-width: 1200px;
         }
 
         .profile-card {
+            background-color: aliceblue;
             border: 1px solid #ddd;
             border-radius: 10px;
-            padding: 25px; /* Increased padding */
-            margin-bottom: 30px; /* Increased margin */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
-            font-size: 1.1rem; /* Larger font size */
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
         }
 
         .profile-picture {
-            width: 120px; /* Larger profile picture */
+            width: 120px;
             height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 20px; /* Adjusted margin */
+            margin-right: 20px;
+            cursor: pointer;
         }
 
         .profile-header {
@@ -34,17 +41,17 @@
         }
 
         .profile-header h3 {
-            font-size: 1.75rem; /* Increased heading size */
+            font-size: 1.75rem;
             margin-bottom: 5px;
         }
 
         .profile-header p {
-            font-size: 1.2rem; /* Increased subtitle size */
+            font-size: 1.2rem;
         }
 
         .profile-content h5 {
             margin-bottom: 10px;
-            font-size: 1.25rem; /* Increased section title size */
+            font-size: 1.25rem;
         }
 
         .expertise-list {
@@ -56,24 +63,64 @@
         .expertise-list li {
             margin-bottom: 5px;
         }
+
+        .email-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        .key-attributes {
+            margin-top: 15px;
+        }
+
+        .key-attributes p {
+            margin-bottom: 5px;
+        }
+        h5{
+            font-weight: bolder;
+        }
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-arrow:hover {
+            color: #007bff;
+        }
+
     </style>
 </head>
 
 <body>
+    <a href="#" class="back-arrow" onclick="navigateBack()">
+        &larr; Back
+    </a>
     <div class="container mt-5">
         <h1 class="mb-4 text-center">Doctor Profiles</h1>
 
         <!-- Dr. Abdul Hameed's Profile -->
         <div id="profile-dr-hameed" class="profile-card">
             <div class="profile-header">
-                <img src="static/Dr Hameed N.jpg" alt="Dr. Abdul Hameed" class="profile-picture">
+                <img src="static/Dr Hameed N.jpg" alt="Dr. Abdul Hameed" class="profile-picture" onclick="window.location.href='/profile#profile-dr-hameed';">
                 <div>
                     <h3>Dr. Abdul Hameed</h3>
                     <p class="text-muted">MBBS, General Practitioner</p>
+                    <p>
+                        <a href="mailto:drhameed@marvellousmedical.ae" class="email-link">Email Dr. Hameed</a>
+                    </p>
                 </div>
             </div>
             <div class="profile-content">
-                <p>With over 7 years of dedicated experience as a general practitioner in India, Dr. Hameed embodies a profound commitment to healthcare.</p>
+                <p>With over 7 years of dedicated experience as a general practitioner in India, Dr. Hameed embodies a profound commitment to healthcare. He earned his MBBS degree from Annamalai University in 2016 and has served in esteemed hospitals and clinics, including Kauvery Hospital in Chennai, Lalpet Health Care Center, and Best Clinic and Medical. Throughout this journey, he has honed essential skills that empower him to understand diagnoses and deliver exceptional treatment. </p>
                 <h5>Expertise:</h5>
                 <ul class="expertise-list">
                     <li>Diabetes</li>
@@ -81,21 +128,45 @@
                     <li>Dyslipidemia</li>
                     <li>Thyroid disorder</li>
                     <li>Cardiac disease</li>
+                    <li>Renal disease</li>
+                    <li>Gastrointestinal disease</li>
+                    <li>Infectious disease</li>
+                    <li>Joint and Muscle pain</li>
+                    <li>Asthma and COPD</li>
+                    <li>Minor surgery, wound care, and suturing</li>
+                    <li>Allergies, Skin infections</li>
+                    <li>General pediatric management</li>
                 </ul>
+                <div class="key-attributes">
+                    <h5>Key Attributes:</h5>
+                    <p>Experienced in comprehensive treatment plans and highly skilled in diagnostics and minor surgeries.</p>
+                </div>
             </div>
         </div>
 
         <!-- Dr. Sabeen Shafique's Profile -->
         <div id="profile-dr-sabeen" class="profile-card">
             <div class="profile-header">
-                <img src="static/Dr sabeen photo.jpg" alt="Dr. Sabeen Shafique" class="profile-picture">
+                <a href="/profile#profile-dr-sabeen">
+                    <img src="static/Dr sabeen photo.jpg" alt="Dr. Sabeen Shafique" class="profile-picture">
+                </a>
                 <div>
                     <h3>Dr. Sabeen Shafique</h3>
                     <p class="text-muted">General Practitioner</p>
+                    <p>
+                        <a href="mailto:drsabeen@marvellousmedical.ae" class="email-link">Email Dr. Sabeen</a>
+                        
+                    </p>
                 </div>
             </div>
             <div class="profile-content">
-                <p>Dr. Sabeen Shafique is a highly experienced General Practitioner with extensive years of dedicated service in the healthcare field.</p>
+                <p>Dr. Sabeen Shafique is a highly experienced General Practitioner with extensive years of dedicated service in the healthcare field. Her diverse expertise provides her with a comprehensive understanding of healthcare management, allowing her to approach patient care with a well-rounded perspective. 
+
+                    She has successfully managed a wide range of medical conditions, both acute and chronic, demonstrating a proven ability to deliver effective treatment plans tailored to the individual needs of her patients. Dr. Shafique emphasizes a patient-centered approach, ensuring that everyone who walks through her doors feels listened to and valued. Her commitment to family health is particularly notable in her work with pediatric patients, where she combines her medical knowledge with a compassionate touch.
+                    
+                    Fluent in both English and Urdu, Dr. Shafique fosters effective communication with a diverse array of patient populations, ensuring that language barriers do not hinder the quality of care. By cultivating an environment of trust and openness, she empowers her patients to engage actively in their healthcare journey.
+                    
+                    Dr. Shafique is deeply committed to the core values of honesty, respect, and empathy, which guide her practice and interactions with patients. She prioritizes ethical patient care, ensuring that every decision made is in the best interest of her patients’ health and well-being. Her dedication to cultivating strong relationships within the community exemplifies her passion for improving health outcomes for all individuals and families she serves.</p>
                 <h5>Key Attributes:</h5>
                 <p>Fluent in English and Urdu, emphasizes patient-centered care, and specializes in family health management.</p>
             </div>
@@ -104,14 +175,26 @@
         <!-- Dr. Roshini V. Nair's Profile -->
         <div id="profile-dr-roshini" class="profile-card">
             <div class="profile-header">
-                <img src="static/roshini.jpeg" alt="Dr. Roshini V. Nair" class="profile-picture">
+                <a href="/profile#profile-dr-roshini">
+                    <img src="static/roshini.jpeg" alt="Dr. Roshini V. Nair" class="profile-picture">
+                </a>
                 <div>
                     <h3>Dr. Roshini V. Nair</h3>
                     <p class="text-muted">MDS, Prosthodontist</p>
+                    <p>
+                        <a href="mailto:drroshini@marvellousmedical.ae" class="email-link">Email Dr. Roshini</a>
+
+                    </p>
                 </div>
             </div>
             <div class="profile-content">
-                <p>Dr. Roshini is a highly skilled Prosthodontist with over a decade of professional experience in the dental field.</p>
+                <p>Dr. Roshini V. Nair is a highly skilled Prosthodontist with over a decade of professional experience in the dental field. She embarked on her academic journey by earning her Bachelor’s degree in Dental Surgery from Tamil Nadu Dr. MGR University in 2012. Driven to deepen her expertise, she pursued a post-graduate degree, earning her Master of Dental Surgery (MDS) from Rajiv Gandhi University of Health Sciences in Karnataka in 2018.
+
+                    Throughout her career, Dr. Roshini has had the privilege of working in esteemed dental clinic groups, including Vasan Dental Care in Trivandrum, where she honed her clinical skills and developed a patient-centered approach to treatment. Since moving to the UAE in 2019, she has continued to deliver exceptional dental care to a diverse patient population.
+                    
+                    Dr. Roshini's areas of expertise encompass a wide range of dental procedures, including the design and fabrication of dental crowns and bridges, smile designing, full mouth rehabilitation, removable dentures, and root canal treatments. She is particularly adept at performing delicate pediatric root canal procedures and designing space maintainers that are essential for children’s dental health.
+                    
+                    In addition to her clinical skills, Dr. Roshini is a multilingual practitioner, fluent in English, Malayalam, Hindi, Tamil, and Kannada, which allows her to communicate effectively with patients from various backgrounds. Her commitment to ongoing education and patient well-being makes her a trusted choice for those seeking comprehensive dental care.</p>
                 <h5>Expertise:</h5>
                 <ul class="expertise-list">
                     <li>Dental crowns and bridges</li>
@@ -124,14 +207,26 @@
         <!-- Dr. Anu Joseph's Profile -->
         <div id="profile-dr-anu" class="profile-card">
             <div class="profile-header">
-                <img src="static/ANU.jpeg" alt="Dr. Anu Joseph" class="profile-picture">
+                <a href="/profile#profile-dr-anu">
+                    <img src="static/ANU.jpeg" alt="Dr. Anu Joseph" class="profile-picture">
+                </a>
                 <div>
                     <h3>Dr. Anu Joseph</h3>
                     <p class="text-muted">MDS, Orthodontist</p>
+                    <p>
+                        <a href="mailto:dranu@marvellousmedical.ae" class="email-link">Email Dr. Anu</a>
+                       
+                    </p>
                 </div>
             </div>
             <div class="profile-content">
-                <p>Dr. Anu Joseph is an accomplished orthodontist committed to helping patients achieve their ideal smiles through personalized care.</p>
+                <p>Dr. Anu Joseph is an accomplished orthodontist committed to helping patients achieve their ideal smiles through personalized care tailored to individual needs. She earned her Bachelor of Dental Surgery (BDS) and Master of Dental Surgery (MDS) in Orthodontics and Dentofacial Orthopaedics from Dr. MGR University in Chennai, India. With over five years of extensive experience across India and the UAE, she has cultivated a comprehensive skill set in orthodontic treatment and general dentistry.  
+
+                    Her clinical expertise encompasses a variety of advanced orthodontic techniques, including functional appliance therapy, which focuses on correcting jaw and dental alignment through customized devices. Dr. Anu Joseph is adept at providing both removable and fixed orthodontic solutions, as well as TAD-assisted (Temporary Anchorage Device) orthodontic care, which allows for greater precision in complex cases. She also offers clear aligners, an increasingly popular alternative to traditional braces, enabling patients to achieve straight teeth with minimal impact on their daily lives.  
+                    
+                    In addition to her proficiency in orthodontics, Dr. Anu Joseph is skilled in several other dental procedures. These include teeth whitening for enhanced aesthetic appeal, restorative dentistry to repair and revitalize damaged teeth, and routine dental check-ups to ensure optimal oral health. Her specialty areas extend to crowns and bridges, which are crucial for restoring function and appearance to patients with missing or damaged teeth. She is experienced in tooth extraction, scaling and polishing to maintain gum health, as well as the application of veneers for aesthetic enhancements. Furthermore, she provides care for removable partial dentures and full dentures, catering to patients with varying dental needs.  
+                    
+                    Multilingual in English, Hindi, Malayalam, and Tamil, Dr. Anu Joseph is prepared to communicate effectively with a diverse range of patients, ensuring comfort and understanding during their visit. Her dedication to ongoing professional development and patient care positions her as a trusted provider in the field of orthodontics and dentistry. </p>
                 <h5>Expertise:</h5>
                 <ul class="expertise-list">
                     <li>Functional appliance therapy</li>
@@ -143,5 +238,15 @@
         </div>
     </div>
 </body>
-
+<script>
+    function navigateBack() {
+        if (window.history.length > 1) {
+            // Navigate to the previous page if there is history
+            window.history.back();
+        } else {
+            // Redirect to a default page if no history is available
+            window.location.href = '/'; // Replace '/' with your desired fallback URL
+        }
+    }
+</script>
 </html>

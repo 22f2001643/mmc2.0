@@ -22,7 +22,7 @@
   --primary-color: #007bff; /* Updated primary color */
   --primary-color-dark: #0056b3; /* Darker shade */
   --primary-color-light: #e9f7ff; /* Lighter shade */
-  --secondary-color: #ff5722; /* Updated secondary color */
+  --secondary-color: #860101; /* Updated secondary color */
   --text-dark: #212529; /* Darker text color */
   --text-light: #6c757d; /* Lighter text color */
   --white: #ffffff; /* White color */
@@ -80,6 +80,32 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+.message ul {
+  list-style-type: none;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+}
+
+.message ul li {
+  padding: 10px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Success Flash */
+.message li.success {
+  background-color: #28a745;
+  color: white;
+}
+
+/* Error Flash */
+.message li.error {
+  background-color: #dc3545;
+  color: white;
+}
+
 header {
     position: relative;
     height: 800px;
@@ -133,18 +159,24 @@ header::before {
   }
   
 
-.nav__container {
-  padding: 10px;
+  .nav__container {
+  padding: 12px; /* Adjust padding for internal spacing */
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(66, 58, 58, 0.089); /* Background color */
+  border-radius: 0; /* Keep the corners square */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  width: 100%; /* Full width of the screen */
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
 }
+
+
 
 .nav__logo {
   font-size: 1.5rem;
   font-weight: 600;
-  color: orangered;
+  color: red;
   border-color: #212529;
   font-size: 35px;
 }
@@ -158,19 +190,26 @@ header::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   position:bottom;
-  color:black;
+  color:rgb(255, 255, 255);
+  
+}
+
+.nav__links a{
+  color:rgb(255, 255, 255);
   
 }
 
 .link a {
   padding: 0.5rem;
-  color: rgb(255, 231, 231);
+  font-size: large;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
 }
 
 .link a:hover {
-  color: black;
+  color: rgb(255, 255, 255);
 }
 
 .header__container {
@@ -255,7 +294,7 @@ header::before {
   outline: none;
   font-size: 1rem;
   color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  border: 1px solid maroon;
   background-color: transparent;
   border-radius: 5px;
   white-space: nowrap;
@@ -265,7 +304,7 @@ header::before {
 
 .service__btn:hover {
   color: var(--white);
-  background-color: var(--primary-color);
+  background-color: maroon;
 }
 
 .service__grid {
@@ -453,10 +492,10 @@ header::before {
 }
 
 .doctors__grid {
-  margin-top: 4rem;
+  margin-top: 3rem;
   display: grid;
-  grid-template-columns: repeat(2, 5fr);
-  gap: 2rem;
+  grid-template-columns: repeat(4, 5fr);
+  gap: 1rem;
   animation: slide-in-right 0.5s ease-out forwards;
   box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
 }
@@ -467,7 +506,9 @@ header::before {
   border-radius: 10px;
   cursor: pointer;
   overflow: hidden;
+  width:280px;
 }
+
 
 .doctors__card__image {
   position: relative;
@@ -482,23 +523,26 @@ header::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.3rem;
   transition: 0.5s;
 }
 
 .doctors__socials span {
-  display: inline-block;
-  padding: 6px 12px;
-  font-size: 1.5rem;
-  color: var(--text-dark);
-  background-color: var(--white);
+  padding: 0.75rem 1rem;
+  outline: none;
+  font-size: 1rem;
+  color: var(--primary-color);
+  border: 1px solid rgb(2, 0, 0);
+  background-color: transparent;
   border-radius: 5px;
+  white-space: nowrap;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .doctors__socials span:hover {
-  color: var(--primary-color);
+  color: rgb(255, 255, 255);
+  background-color: #000;
 }
 
 .doctors__card:hover .doctors__socials {
@@ -587,6 +631,22 @@ header::before {
   color: var(--white);
   cursor: pointer;
 }
+
+.profile-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; /* Added transition for background-color */
+    border: 4px solid transparent; /* Define the initial border */
+    border-radius: 10px; /* Optional: makes the image round if it's a circle */
+}
+
+.hover-link:hover .profile-img {
+    background-color: #000000; /* Change background color on hover */
+    border-color: #7392b396; /* Change the border color on hover */
+    transform: scale(0.95); /* Zoom out effect on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover for a 3D effect */
+}
+
+
+
 
 @media (width < 900px) {
   .service__grid {
@@ -893,7 +953,7 @@ a:hover {
   <body>
     <header>
       <video autoplay muted loop>
-          <source src="static/Untitled design.mp4" type="video/mp4">
+          <source src="static/final.mp4" type="video/mp4">
           Your browser does not support the video tag.
       </video>
   
@@ -908,13 +968,21 @@ a:hover {
               <li class="link"><a href="#home">Home</a></li>
               <li class="link"><a href="#about">About Us</a></li>
               <li class="link"><a href="#service">Services</a></li>
+              <li class="link"><a href="/contact">Contact us</a></li><br>
           </ul>
-          <a href="/contact">
-              <button class="btn">Contact us</button>
-          </a>
       </nav>
+      <div class="message">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    <ul>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+      </div>
       <br><br>
-  
       <div class="section__container header__container" id="home">
           <div class="header__content">
               <h1>Our Mission</h1>
@@ -962,6 +1030,7 @@ a:hover {
                 <button class="btn form__btn" type="submit">Book Appointment</button>
             </form>
         </div>-->
+
         <div class="header__form" id="appointment-form" style="display: none;">
           <button class="close-btn" onclick="closeForm('appointment-form')">✖</button>
           <form action="{{ url_for('view_appointment') }}" method="POST">
@@ -1111,7 +1180,8 @@ a:hover {
           <!-- Dr. ROSHINI V NAIR -->
           <div class="doctors__card">
             <div class="doctors__card__image">
-              <img src="static/roshini.jpeg" alt="doctor" />
+              <a href="/profile#profile-dr-roshini" target="_blank" class="hover-link">
+              <img src="static/roshini.jpeg" alt="doctor" class="profile-img"/></a>
               <div class="doctors__socials">
                 <!-- Email options -->
                 <span onclick="window.location.href='mailto:drroshini@marvellousmedical.ae';" style="cursor: pointer;" title="Send Email">
@@ -1124,17 +1194,13 @@ a:hover {
                   <i class="ri-microsoft-line"></i>
                 </span>
                 <!-- Book Appointment -->
-                <span class="icon" onclick="window.location.href='/#book-check-btn'" style="cursor: pointer;" title="Book Appointment">
+                <span class="icon" onclick="window.location.href='/dental_page'" style="cursor: pointer;" title="Book Appointment">
                   <i class="ri-calendar-check-line"></i>
                 </span>
                 <!-- Medical Information -->
                 <span class="icon" onclick="window.location.href='/dental'" style="cursor: pointer;" title="View Medical Info">
                   <i class="ri-syringe-line"></i>
                 </span>
-                <!-- WhatsApp -->
-                <span><a href="/profile#profile-dr-roshini" style="cursor: pointer; text-decoration: none;" title="View Profile">
-                  <i class="ri-heart-line"></i>
-                </a></span>
               </div>
             </div>
             <h4>Dr. ROSHINI V NAIR</h4>
@@ -1145,7 +1211,8 @@ a:hover {
           <!-- Dr. Anu Joseph -->
           <div class="doctors__card">
             <div class="doctors__card__image">
-              <img src="static/ANU.jpeg" alt="doctor" />
+              <a href="/profile#profile-dr-anu" target="_blank" class="hover-link">
+              <img src="static/ANU.jpeg" alt="doctor" class="profile-img"/></a>
               <div class="doctors__socials">
                 <span onclick="window.location.href='mailto:dranu@marvellousmedical.ae';" style="cursor: pointer;" title="Send Email">
                   <i class="ri-mail-line"></i>
@@ -1156,15 +1223,12 @@ a:hover {
                 <span onclick="window.open('https://outlook.live.com/owa/?path=/mail/action/compose&to=dranu@marvellousmedical.ae', '_blank');" style="cursor: pointer;" title="Send Email via Outlook">
                   <i class="ri-microsoft-line"></i>
                 </span>
-                <span class="icon" onclick="window.location.href='/#book-check-btn'" style="cursor: pointer;" title="Book Appointment">
+                <span class="icon" onclick="window.location.href='/dental_page'" style="cursor: pointer;" title="Book Appointment">
                   <i class="ri-calendar-check-line"></i>
                 </span>
                 <span class="icon" onclick="window.location.href='/dental'" style="cursor: pointer;" title="View Medical Info">
                   <i class="ri-syringe-line"></i>
                 </span>
-                <span><a href="/profile#profile-dr-anu" style="cursor: pointer; text-decoration: none;" title="View Profile">
-                  <i class="ri-heart-line"></i>
-                </a></span>
               </div>
             </div>
             <h4>Dr. Anu Joseph</h4>
@@ -1175,7 +1239,8 @@ a:hover {
           <!-- Dr. Abdul Hameed -->
           <div class="doctors__card">
             <div class="doctors__card__image">
-              <img src="static/Dr Hameed N.jpg" alt="doctor" />
+              <a href="/profile#profile-dr-hameed" target="_blank" class="hover-link">
+              <img src="static/Dr Hameed N.jpg" alt="doctor" class="profile-img"/></a>
               <div class="doctors__socials">
                 <span onclick="window.location.href='mailto:drhameed@marvellousmedical.ae';" style="cursor: pointer;" title="Send Email">
                   <i class="ri-mail-line"></i>
@@ -1186,26 +1251,27 @@ a:hover {
                 <span onclick="window.open('https://outlook.live.com/owa/?path=/mail/action/compose&to=drhameed@marvellousmedical.ae', '_blank');" style="cursor: pointer;" title="Send Email via Outlook">
                   <i class="ri-microsoft-line"></i>
                 </span>
-                <span class="icon" onclick="window.location.href='/#book-check-btn'" style="cursor: pointer;" title="Book Appointment">
+                <span class="icon" onclick="window.location.href='/dental_page'" style="cursor: pointer;" title="Book Appointment">
                   <i class="ri-calendar-check-line"></i>
                 </span>
                 <span class="icon" onclick="window.location.href='/general'" style="cursor: pointer;" title="View Medical Info">
                   <i class="ri-hospital-line"></i>
                 </span>
-                <span><a href="/profile#profile-dr-hameed" style="cursor: pointer; text-decoration: none;" title="View Profile">
-                  <i class="ri-heart-line"></i>
-                </a></span>
                 
               </div>
             </div>
             <h4>Dr. Abdul Hameed</h4>
-            <p>M.B.B.S. General Practitioner</p>
+            <p>MBBS</p>
+            <p>GENERAL PRACTITIONER</p>
           </div>
         
           <!-- Dr. Sabeen Shafique -->
           <div class="doctors__card">
             <div class="doctors__card__image">
-              <img src="static/Dr sabeen photo.jpg" alt="doctor" />
+              <a href="/profile#profile-dr-sabeen" target="_blank" class="hover-link">
+                <img src="static/Dr sabeen photo.jpg" alt="doctor" class="profile-img" />
+            </a>
+            
               <div class="doctors__socials">
                 <span onclick="window.location.href='mailto:drsabeen@marvellousmedical.ae';" style="cursor: pointer;" title="Send Email">
                   <i class="ri-mail-line"></i>
@@ -1216,19 +1282,17 @@ a:hover {
                 <span onclick="window.open('https://outlook.live.com/owa/?path=/mail/action/compose&to=drsabeen@marvellousmedical.ae', '_blank');" style="cursor: pointer;" title="Send Email via Outlook">
                   <i class="ri-microsoft-line"></i>
                 </span>
-                <span class="icon" onclick="window.location.href='/#book-check-btn'" style="cursor: pointer;" title="Book Appointment">
+                <span class="icon" onclick="window.location.href='/dental_page'" style="cursor: pointer;" title="Book Appointment">
                   <i class="ri-calendar-check-line"></i>
                 </span>
                 <span class="icon" onclick="window.location.href='/general'" style="cursor: pointer;" title="View Medical Info">
                   <i class="ri-hospital-line"></i>
                 </span>
-                <span><a href="/profile#profile-dr-sabeen" style="cursor: pointer; text-decoration: none;" title="View Profile">
-                  <i class="ri-heart-line"></i>
-                </a></span>
               </div>
             </div>
             <h4>Dr. Sabeen Shafique</h4>
-            <p>M.B.B.S. General Practitioner</p>
+            <p>MBBS</p>
+            <p>GENERAL PRACTITIONER</p>
           </div>
         
         </div>
@@ -1294,16 +1358,18 @@ a:hover {
         <div class="footer__bar__content">
           <p>Copyright © 2024 Marvellous Medical Center TR. All rights reserved.</p>
           <div class="footer__socials">
-            <span><i class="ri-instagram-line"></i></span>
-            <span><i class="ri-facebook-fill"></i></span>
-            <span><i class="ri-heart-fill"></i></span>
-            <span><i class="ri-twitter-fill"></i></span>
+            <span onclick="window.location.href='tel:+97165614266'"><i class="ri-phone-line"></i></span>
+            <span onclick="window.location.href='https://wa.me/971505662765'"><i class="ri-whatsapp-fill"></i></span>
+            <span onclick="window.location.href='mailto:info@marvellousmedical.ae';"><i class="ri-mail-fill"></i></span>
+            <span onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=info@marvellousmedical.ae', '_blank');"><i class="ri-google-fill"></i></span>
           </div>
         </div>
       </div>
     </footer>
     
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
   <script>
      function populateTimeSlots() {
         const timeSlotSelect = document.getElementById('appointment_time');
@@ -1422,8 +1488,53 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeForm(formId) {
         document.getElementById(formId).style.display = 'none';
     }
+    
+    $(document).ready(function () {
+            $('#appointment-form').on('submit', function (e) {
+                e.preventDefault(); // Prevent default form submission
 
-
+                $.ajax({
+                    url: '/book_appointment',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        // Display success message in the modal
+                        $('#modalMessage').text(response.message);
+                        $('#messageModal').modal('show');
+                    },
+                    error: function (xhr) {
+                        // Display error message in the modal
+                        $('#modalMessage').text(xhr.responseJSON.message);
+                        $('#messageModal').modal('show');
+                    }
+                });
+            });
+        });
   </script>
-  
+  <script>
+  document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch("/book_appointment", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert(data.message); // Optional: Show success message
+          window.location.href = "/"; // Redirect to the index page
+        } else {
+          alert(data.message); // Show error message
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An error occurred. Please try again.");
+      });
+  });
+</script>
+
 </html>

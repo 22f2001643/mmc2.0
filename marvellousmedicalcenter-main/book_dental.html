@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #000000;
             margin: 0;
             padding: 0;
             display: flex;
@@ -22,44 +23,53 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(114, 12, 12, 0.5);
             justify-content: center;
             align-items: center;
-            display: flex; /* Make form visible right away */
+            display: flex;
+            padding: 10px;
+            overflow: hidden;
         }
 
         .header__form form {
-            background-color: #fff;
-            padding: 30px;
+            background-color: #ffffff;
+            padding: 40px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 400px;
+            width: 850px;
+            max-height: 80vh;
+            overflow-y: auto;
         }
 
         .header__form h4 {
-            font-size: 1.5rem;
+            font-size: 35px;
+            font-weight: bolder;
+            color: #3a0303;
             margin-bottom: 20px;
             text-align: center;
         }
 
-        .header__form input, .header__form select, .header__form button {
+        .header__form input,
+        .header__form select,
+        .header__form button {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            border: none;
+            border-radius: 4px;
+            background-color: #f1f1f1;
             font-size: 1rem;
         }
 
         .header__form button {
-            background-color: #4CAF50;
+            background-color: #ad0505;
             color: white;
             border: none;
             cursor: pointer;
         }
 
         .header__form button:hover {
-            background-color: #45a049;
+            background-color: #1000a1;
         }
 
         .header__form .close-btn {
@@ -90,9 +100,26 @@
         .btn:hover {
             background-color: #45a049;
         }
+        .back-arrow {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            color: black;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .back-arrow:hover {
+            color: #007bff;
+        }
     </style>
 </head>
+
 <body>
+    <a href="#" class="back-arrow" onclick="navigateBack()">
+        &larr; Back
+    </a>
     <div class="header__form" id="checkup-form">
         <form action="{{ url_for('book_appointment') }}" method="POST">
             <h4>Book Appointment</h4>
@@ -143,150 +170,149 @@
 
         // Function to populate time slots dynamically
         function populateTimeSlots() {
-            const selectedDate = document.getElementById('appointment_date').value;
-            const specialty = document.getElementById('appointment_specialty').value;
             const timeSlotSelect = document.getElementById('appointment_time');
-            const timeSlots = ['08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'];
+            timeSlotSelect.innerHTML = '<option value="" disabled selected>Select Time Slot</option>'; // Reset the dropdown
 
-            // Clear existing time slots
-            timeSlotSelect.innerHTML = '<option value="" disabled selected>Select Time Slot</option>';
+            let startTime = 9; // Start at 9 AM
+            let endTime = 22; // End at 10 PM (22:00)
 
-            // Add available time slots based on the selected date and specialty
-            for (let time of timeSlots) {
-                // Check if the time slot is unavailable for the selected date
-                if (unavailableTimes[selectedDate] && unavailableTimes[selectedDate].includes(time)) {
-                    continue; // Skip unavailable times
-                }
-                const option = document.createElement('option');
-                option.value = time;
-                option.textContent = time;
-                timeSlotSelect.appendChild(option);
+            for (let hour = startTime; hour < endTime; hour++) {
+                // Add two 30-minute slots for each hour
+                let option1 = document.createElement("option");
+                option1.value = formatTime24(hour, 0); // Value in 24-hour format
+                option1.text = formatTime(hour, 0); // Display in 12-hour format
+                timeSlotSelect.appendChild(option1);
+
+                let option2 = document.createElement("option");
+                option2.value = formatTime24(hour, 30); // Value in 24-hour format
+                option2.text = formatTime(hour, 30); // Display in 12-hour format
+                timeSlotSelect.appendChild(option2);
             }
         }
 
-        // Add event listener to update time slots when date or specialty changes
-        document.getElementById('appointment_date').addEventListener('change', populateTimeSlots);
-        document.getElementById('appointment_specialty').addEventListener('change', populateTimeSlots);
-
-        function populateTimeSlots() {
-        const timeSlotSelect = document.getElementById('appointment_time');
-        timeSlotSelect.innerHTML = '<option value="" disabled selected>Select Time Slot</option>'; // Reset the dropdown
-
-        let startTime = 9; // Start at 9 AM
-        let endTime = 22; // End at 10 PM (22:00)
-
-        for (let hour = startTime; hour < endTime; hour++) {
-            // Format hours to 12-hour format (with AM/PM)
-            let timeSlot = formatTime(hour) + " - " + formatTime(hour + 1);
-            let option = document.createElement("option");
-            option.value = formatTime24(hour); // Value in 24-hour format
-            option.text = timeSlot; // Display in 12-hour format
-            timeSlotSelect.appendChild(option);
+        // Helper function to format time to 12-hour AM/PM format
+        function formatTime(hour, minute) {
+            let suffix = hour >= 12 ? "PM" : "AM";
+            let formattedHour = ((hour + 11) % 12 + 1); // Convert 24-hour to 12-hour format
+            let formattedMinute = minute.toString().padStart(2, '0');
+            return formattedHour + ":" + formattedMinute + " " + suffix;
         }
-    }
 
-    // Helper function to format time to 12-hour AM/PM format
-    function formatTime(hour) {
-        let suffix = hour >= 12 ? "PM" : "AM";
-        let formattedHour = ((hour + 11) % 12 + 1); // Convert 24-hour to 12-hour format
-        return formattedHour + ":00 " + suffix;
-    }
+        // Helper function to format time to 24-hour format (for value)
+        function formatTime24(hour, minute) {
+            return hour.toString().padStart(2, '0') + ":" + minute.toString().padStart(2, '0');
+        }
 
-    // Helper function to format time to 24-hour format (for value)
-    function formatTime24(hour) {
-        return hour.toString().padStart(2, '0') + ":00";
-    }
+        // Call the function to populate the time slots
+        window.onload = populateTimeSlots;
 
-    // Call the function to populate the time slots
-    window.onload = populateTimeSlots;
+        function closeForm(formId) {
+            document.getElementById(formId).style.display = 'none';
+        }
 
+        document.getElementById("book-check-btn").addEventListener("click", function () {
+            const checkupForm = document.getElementById("checkup-form");
+            const appointmentForm = document.getElementById("appointment-form");
 
-    function closeForm(formId) {
-        document.getElementById(formId).style.display = 'none';
-    }
+            // Show the check-up form and hide the appointment form
+            checkupForm.style.display = "block";
+            appointmentForm.style.display = "none";
+        });
 
-    document.getElementById("book-check-btn").addEventListener("click", function() {
-        const checkupForm = document.getElementById("checkup-form");
-        const appointmentForm = document.getElementById("appointment-form");
-        
-        // Show the check-up form and hide the appointment form
-        checkupForm.style.display = "block";
-        appointmentForm.style.display = "none";
-      });
-      
-      document.getElementById("book-appointment-btn").addEventListener("click", function() {
-        const appointmentForm = document.getElementById("appointment-form");
-        const checkupForm = document.getElementById("checkup-form");
-        
-        // Show the appointment form and hide the check-up form
-        appointmentForm.style.display = "block";
-        checkupForm.style.display = "none";
-      });
-      function closeForm(formId) {
-        document.getElementById(formId).style.display = "none";
-      }
-      let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
+        document.getElementById("book-appointment-btn").addEventListener("click", function () {
+            const appointmentForm = document.getElementById("appointment-form");
+            const checkupForm = document.getElementById("checkup-form");
 
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.remove('active');
-    if (i === index) {
-      slide.classList.add('active');
-    }
-  });
-}
+            // Show the appointment form and hide the check-up form
+            appointmentForm.style.display = "block";
+            checkupForm.style.display = "none";
+        });
 
-function changeSlide(direction) {
-  currentSlide = (currentSlide + direction + slides.length) % slides.length;
-  showSlide(currentSlide);
-}
+        function closeForm(formId) {
+            document.getElementById(formId).style.display = "none";
+        }
 
-// Automatically change slides every 5 seconds
-setInterval(() => {
-  changeSlide(1); // Change to the next slide
-}, 3000);
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
 
-// Initialize the first slide
-showSlide(currentSlide);
-
-function toggleDropdown() {
-  const dropdown = document.getElementById('dropdown');
-  dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
-}
-document.getElementById('contactButton').addEventListener('click', function() {
-  const contactSection = document.getElementById('contact');
-  contactSection.style.display = contactSection.style.display === 'none' || contactSection.style.display === '' ? 'block' : 'none';
-});
-document.addEventListener('DOMContentLoaded', function() {
-        const loginBtn = document.getElementById('login-btn');
-        if (loginBtn) {
-            loginBtn.addEventListener('click', function() {
-                console.log('Login button clicked'); // Check if the button click is detected
-                document.getElementById('login-form').style.display = 'block';
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === index) {
+                    slide.classList.add('active');
+                }
             });
         }
 
-        const bookCheckBtn = document.getElementById('book-check-btn');
-        if (bookCheckBtn) {
-            bookCheckBtn.addEventListener('click', function() {
-                document.getElementById('checkup-form').style.display = 'block';
-            });
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            showSlide(currentSlide);
         }
 
-        const bookAppointmentBtn = document.getElementById('book-appointment-btn');
-        if (bookAppointmentBtn) {
-            bookAppointmentBtn.addEventListener('click', function() {
-                document.getElementById('appointment-form').style.display = 'block';
-            });
+        // Automatically change slides every 5 seconds
+        setInterval(() => {
+            changeSlide(1); // Change to the next slide
+        }, 3000);
+
+        // Initialize the first slide
+        showSlide(currentSlide);
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
         }
-    });
 
-    function closeForm(formId) {
-        document.getElementById(formId).style.display = 'none';
-    }
+        document.getElementById('contactButton').addEventListener('click', function () {
+            const contactSection = document.getElementById('contact');
+            contactSection.style.display = contactSection.style.display === 'none' || contactSection.style.display === '' ? 'block' : 'none';
+        });
 
+        document.getElementById('commentBtn').addEventListener('click', function () {
+            const commentSection = document.getElementById('comment');
+            commentSection.style.display = commentSection.style.display === 'none' || commentSection.style.display === '' ? 'block' : 'none';
+        });
+
+        const contactBtn = document.querySelector('.header__form button');
+        contactBtn.addEventListener('click', function () {
+            closeForm('checkup-form');
+        });
     </script>
-
+<script>
+    document.getElementById("appointmentForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      const formData = new FormData(this);
+  
+      fetch("/book_appointment", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.status === "success") {
+            alert(data.message); // Optional: Show success message
+            window.location.href = "/"; // Redirect to the index page
+          } else {
+            alert(data.message); // Show error message
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("An error occurred. Please try again.");
+        });
+    });
+  </script>
+  <script>
+    function navigateBack() {
+        if (window.history.length > 1) {
+            // Navigate to the previous page if there is history
+            window.history.back();
+        } else {
+            // Redirect to a default page if no history is available
+            window.location.href = '/'; // Replace '/' with your desired fallback URL
+        }
+    }
+</script>
 </body>
+
 </html>

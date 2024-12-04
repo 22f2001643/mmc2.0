@@ -260,10 +260,9 @@ def book_checkup():
     flash(f"Appointment booked successfully for {first_name} {last_name} on {appointment_date} at {appointment_time}.", "success")
     return redirect(url_for('index'))
 
-# Route to handle form submission for Appointment
-@app.route('/book_appointment', methods=['GET', 'POST'])
+@app.route('/book_appointment', methods=['POST'])
 def book_appointment():
-    # Retrieve form data
+    # Retrieve form data from request
     first_name = request.form.get('first_name')
     last_name = request.form.get('last_name')
     address = request.form.get('address')
@@ -275,11 +274,11 @@ def book_appointment():
     booking_type = request.form.get('booking_type')
 
     # Ensure all fields are filled in
-    if not all([first_name, last_name, address, phone, email, appointment_date, appointment_time, specialty,booking_type]):
+    if not all([first_name, last_name, address, phone, email, appointment_date, appointment_time, specialty, booking_type]):
         flash("All fields are required!", "error")
-        return redirect(url_for('index'))
+        return redirect(url_for("index"))
 
-    # Check if the selected date and time slot already has two appointments
+    # Check if the selected date and time slot already has 4 appointments
     appointment_count = Booking_appointment.query.filter_by(
         appointment_date=appointment_date,
         appointment_time=appointment_time
@@ -287,8 +286,7 @@ def book_appointment():
 
     if appointment_count >= 4:
         flash(f"Time slot on {appointment_date} at {appointment_time} is fully booked.", "error")
-        return redirect(url_for('index'))
-
+        return redirect(url_for("index"))
 
     # Create a new booking instance
     new_booking = Booking_appointment(
@@ -307,12 +305,9 @@ def book_appointment():
     db.session.add(new_booking)
     db.session.commit()
 
-    # Display success message and redirect
+    # Flash success message and redirect to index
     flash(f"Appointment booked successfully for {first_name} {last_name} on {appointment_date} at {appointment_time}.", "success")
-    return redirect(url_for('index'))
-
-
-
+    return redirect(url_for("index"))
 
 # Route to get available times for the selected date
 @app.route('/get_available_times', methods=['POST'])
@@ -346,7 +341,7 @@ def cancel_appointment(appointment_id):
     db.session.delete(booking)
     db.session.commit()
     flash("Appointment canceled successfully.", "success")
-    return redirect(url_for('index'))
+    return render_template("login.html")
 
 
 
@@ -365,18 +360,6 @@ def send_email():
     
     return redirect(url_for('index'))
 
-@app.route('/delete_booking/<int:booking_id>', methods=['POST'])
-def delete_booking(booking_id):
-    booking = Booking_appointment.query.get(booking_id)
-
-    if booking:
-        db.session.delete(booking)
-        db.session.commit()
-        flash("Booking deleted successfully.", "success")
-    else:
-        flash("Booking not found.", "error")
-
-    return redirect(url_for('dashboard'))
 
 @app.route('/update_booking_status/<int:booking_id>', methods=['POST'])
 def update_booking_status(booking_id):
@@ -431,12 +414,12 @@ def logout():
 
 @app.route('/delete_appointment/<int:appointment_id>', methods=['POST'])
 def delete_appointment(appointment_id):
-    # Logic to delete appointment from the database
-    appointment = Appointment.query.get(appointment_id)
-    if appointment:
-        db.session.delete(appointment)
-        db.session.commit()
-    return redirect(url_for('admin_appointments'))  # Redirect back to the appointments list
+    booking = Booking_appointment.query.get_or_404(appointment_id)
+    db.session.delete(booking)
+    db.session.commit()
+    flash("Appointment canceled successfully.", "success")
+    return redirect(url_for('admin'))
+
 
 
 
